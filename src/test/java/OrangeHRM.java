@@ -40,7 +40,13 @@ public class OrangeHRM {
         List<WebElement> rows = driver.findElements(By.xpath("//div[@class='oxd-table-body']//div[@role='row']"));
         Assert.assertEquals(rows.size(), 1);
         System.out.println("Number of result rows: " + rows.size());
-        //aaaa
+        WebElement username = driver.findElement(By.xpath("//div[@class='oxd-table-body']//div[@role='row']/div[2]"));
+        WebElement userRole = driver.findElement(By.xpath("//div[@class='oxd-table-body']//div[@role='row']/div[3]"));
+        WebElement status = driver.findElement(By.xpath("//div[@class='oxd-table-body']//div[@role='row']/div[5]"));
+
+        Assert.assertEquals(username.getText(), targetedUsername);
+        Assert.assertEquals(userRole.getText(), "Admin");
+        Assert.assertEquals(status.getText(), "Enabled");
     }
 
 
