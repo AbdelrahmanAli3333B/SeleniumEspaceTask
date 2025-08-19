@@ -3,12 +3,13 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-
 import java.time.Duration;
 import java.util.List;
+
 
 public class OrangeHRM {
 
@@ -37,8 +38,9 @@ public class OrangeHRM {
         driver.findElement(adminScreen).click();
         driver.findElement(userSearch).sendKeys(targetedUsername + Keys.ENTER);
         List<WebElement> rows = driver.findElements(By.xpath("//div[@class='oxd-table-body']//div[@role='row']"));
+        Assert.assertEquals(rows.size(), 1);
         System.out.println("Number of result rows: " + rows.size());
-        Assert.assertEquals(rows.size(),1);
+
     }
 
 
