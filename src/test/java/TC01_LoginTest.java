@@ -1,4 +1,5 @@
 import Pages.P02_HomePage;
+import com.fasterxml.jackson.databind.ser.Serializers;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import Pages.P01_LoginPage;
@@ -11,33 +12,13 @@ import Pages.P03_AdminPage;
 
 import java.time.Duration;
 
-public class TC01_LoginTest {
-    protected WebDriver driver;
+public class TC01_LoginTest extends Tests.BaseTest {
     P01_LoginPage loginPage;
     P02_HomePage homePage;
 
-
-    @BeforeMethod
-    public void setupDriver(){
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-    }
-
-    @Test(priority = 1)
+    @Test
     public void validLogin(){
-        homePage = new P02_HomePage(driver);
-        new P01_LoginPage(driver)
-                .enterUsername("Admin")
-                .enterPassword("admin123")
-                .clickLoginButton();
-        Assert.assertEquals(homePage.getNavBarText(),"Dashboard");
+        login("Admin","admin123");
     }
 
-    @AfterMethod
-    public void quit(){
-        driver.quit();
-    }
 }

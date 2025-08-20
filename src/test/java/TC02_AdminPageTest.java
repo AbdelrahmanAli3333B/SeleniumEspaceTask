@@ -10,13 +10,13 @@ import org.testng.annotations.Test;
 
 import java.time.Duration;
 
-public class TC02_AdminPageTest extends TC01_LoginTest {
+public class TC02_AdminPageTest extends Tests.BaseTest {
     P02_HomePage homePage;
     P03_AdminPage adminPage;
 
     @Test
     public void getAdminPage(){
-        validLogin();
+        login("Admin","admin123");
         homePage = new P02_HomePage(driver);
         homePage.clickOnAdminTab();
         adminPage = new P03_AdminPage(driver);
