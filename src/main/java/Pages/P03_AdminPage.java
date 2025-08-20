@@ -20,6 +20,7 @@ public class P03_AdminPage {
     private final By firstRowEmployeeName = By.xpath("//*[@id=\"app\"]/div[1]/div[2]/div[2]/div/div[2]/div[3]/div/div[2]/div/div/div[4]/div");
     private final By firstRowStatus = By.xpath("//*[@id=\"app\"]/div[1]/div[2]/div[2]/div/div[2]/div[3]/div/div[2]/div/div/div[5]/div");
     private final By deleteUserButton = By.xpath("//div[@class='orangehrm-container']//button[1]");
+    private final By toasterMessage = By.cssSelector(".oxd-text--toast-message");
 
     public P03_AdminPage(WebDriver driver) {
         this.driver = driver;
@@ -73,6 +74,10 @@ public class P03_AdminPage {
     public P03_AdminPage clickDeleteUserButton(){
         Utility.clickOnElement(driver, deleteUserButton);
         return this;
+    }
+
+    public String getToasterMessage(){
+        return driver.findElement(toasterMessage).getText().trim();
     }
 
 }

@@ -1,0 +1,13 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="OrangeHRM Suite" parallel="true">
+
+    <test name="All Tests">
+        <classes>
+            <class name="TC01_LoginTest"/>
+            <class name="TC02_AdminPageTest"/>
+            <class name="TC03_AdminSearchTest"/>
+            <class name="TC04_DeleteAdminUser"/>
+        </classes>
+    </test>
+
+</suite>

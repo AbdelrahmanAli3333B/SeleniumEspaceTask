@@ -20,7 +20,7 @@ public class TC03_AdminSearchTest extends Tests.BaseTest {
         adminPage.enterUsernameInSearchArea(DataUtil.getJsonData("myTestData","targetedUsername")).clickSearchButton();
         Assert.assertEquals(adminPage.getResultCount(),1);
         Assert.assertEquals(adminPage.getUserRoleFromTable(),"Admin");
-        Assert.assertEquals(adminPage.getEmployeeNameFromTable(),"Meta Test");
+        Assert.assertEquals(adminPage.getEmployeeNameFromTable(),"manda user");
         Assert.assertEquals(adminPage.getStatusFromTable(),"Enabled");
     }
 }

@@ -21,6 +21,7 @@ public class TC04_DeleteAdminUser extends Tests.BaseTest{
         adminPage.enterUsernameInSearchArea(DataUtil.getJsonData("myTestData","targetedUsername"))
                 .clickSearchButton()
                 .clickDeleteUserButton();
+        Assert.assertEquals(adminPage.getToasterMessage(),"Cannot be deleted");
 
     }
 }
