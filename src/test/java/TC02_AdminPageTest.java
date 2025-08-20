@@ -1,23 +1,22 @@
+import Pages.P01_LoginPage;
 import Pages.P02_HomePage;
+import Pages.P03_AdminPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
-import Pages.P01_LoginPage;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import Pages.P03_AdminPage;
 
 import java.time.Duration;
 
-public class TC01_LoginTest {
+public class TC02_AdminPageTest {
     private WebDriver driver;
-    P01_LoginPage loginPage;
     P02_HomePage homePage;
-
+    P03_AdminPage adminPage;
 
     @BeforeMethod
+
     public void setupDriver(){
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
@@ -26,18 +25,10 @@ public class TC01_LoginTest {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
 
-    @Test(priority = 1)
-    public void validLogin(){
-        loginPage = new P01_LoginPage(driver);
-        homePage = new P02_HomePage(driver);
-        loginPage.enterUsername("Admin");
-        loginPage.enterPassword("admin123");
-        loginPage.clickLoginButton();
-        Assert.assertEquals(homePage.getNavBarText(),"Dashboard");
-    }
-
-    @AfterMethod
-    public void quit(){
-        driver.quit();
+    @Test
+    public void adminPage(){
+        adminPage = new P03_AdminPage(driver);
+        homePage.clickOnAdminTab();
+        Assert.assertEquals(adminPage.getNavBarText(),"User Management");
     }
 }
