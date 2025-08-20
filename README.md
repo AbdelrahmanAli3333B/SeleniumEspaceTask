@@ -1,14 +1,14 @@
 Setup instructions
 ------------------
-1- open intellij
-2- clone project 
-3- run TestCaseRunner.xml file to execute test cases
+- open intellij
+- clone project
+- run TestCaseRunner.xml file to execute test cases
 
 Tools used
 ----------
-Selenium
-TestNG
-Web Driver Manager
+- Selenium
+- TestNG
+- Web Driver Manager
 
 I used two design patterns:
 - Page Object Pattern
