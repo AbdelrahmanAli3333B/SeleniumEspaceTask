@@ -8,12 +8,12 @@ public class TC03_AdminSearchTest extends Tests.BaseTest {
     P03_AdminPage adminPage;
 
     @Test
-    public void searchForUserName() throws InterruptedException {
+    public void searchForUserName(){
         login("Admin","admin123");
         homePage = new P02_HomePage(driver);
         homePage.clickOnAdminTab();
         adminPage = new P03_AdminPage(driver);
         adminPage.enterUsernameInSearchArea("Admin").clickSearchButton();
-        Thread.sleep(5000);
+        Assert.assertEquals(adminPage.getResultCount(),1);
     }
 }

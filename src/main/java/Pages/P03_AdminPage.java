@@ -3,12 +3,19 @@ package Pages;
 import Utilities.Utility;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
+import java.util.List;
 
 public class P03_AdminPage {
     private WebDriver driver;
     private final By userManagementTextNavBar = By.xpath("//*[@id=\"app\"]/div[1]/div[1]/header/div[1]/div[1]/span/h6[2]");
     private final By usernameSearchArea = By.xpath("//div[@class='oxd-input-group oxd-input-field-bottom-space']//div//input[@class='oxd-input oxd-input--active']");
     private final By searchButton = By.xpath("//button[normalize-space()='Search']");
+    private final By resultsTable = By.cssSelector(".oxd-table-body .oxd-table-row");
 
     public P03_AdminPage(WebDriver driver) {
         this.driver = driver;
@@ -27,5 +34,23 @@ public class P03_AdminPage {
     public P03_AdminPage clickSearchButton(){
         Utility.clickOnElement(driver, searchButton);
         return this;
+    }
+
+    public int getResultCount(){
+        new WebDriverWait(driver, Duration.ofSeconds(10))
+                .until(ExpectedConditions.or(
+                        ExpectedConditions.visibilityOfElementLocated(resultsTable),
+                        ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[normalize-space()='No Records Found']"))
+                ));
+
+        List<WebElement> rows = driver.findElements(resultsTable);
+        int count = 0;
+        for (WebElement row : rows) {
+            String username = row.findElement(By.xpath(".//div[@role='cell'][2]")).getText().trim();
+            if (!username.isEmpty()) {
+                count++;
+            }
+        }
+        return count;
     }
 }
