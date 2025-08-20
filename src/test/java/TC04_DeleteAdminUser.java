@@ -12,13 +12,15 @@ public class TC04_DeleteAdminUser extends Tests.BaseTest{
     P03_AdminPage adminPage;
 
     @Test
-    public void deleteAdminUser() throws FileNotFoundException {
+    public void deleteAdminUser() throws FileNotFoundException, InterruptedException {
         login(DataUtil.getJsonData("myTestData","username")
                 ,DataUtil.getJsonData("myTestData","password"));
         homePage = new P02_HomePage(driver);
         homePage.clickOnAdminTab();
         adminPage = new P03_AdminPage(driver);
-        adminPage.enterUsernameInSearchArea(DataUtil.getJsonData("myTestData","targetedUsername")).clickSearchButton();
+        adminPage.enterUsernameInSearchArea(DataUtil.getJsonData("myTestData","targetedUsername"))
+                .clickSearchButton()
+                .clickDeleteUserButton();
 
     }
 }
