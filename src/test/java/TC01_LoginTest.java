@@ -1,4 +1,5 @@
 import Pages.P02_HomePage;
+import Utilities.DataUtil;
 import com.fasterxml.jackson.databind.ser.Serializers;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
@@ -10,6 +11,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import Pages.P03_AdminPage;
 
+import java.io.FileNotFoundException;
 import java.time.Duration;
 
 public class TC01_LoginTest extends Tests.BaseTest {
@@ -17,8 +19,9 @@ public class TC01_LoginTest extends Tests.BaseTest {
     P02_HomePage homePage;
 
     @Test
-    public void validLogin(){
-        login("Admin","admin123");
+    public void validLogin() throws FileNotFoundException {
+        login(DataUtil.getJsonData("myTestData","username")
+                ,DataUtil.getJsonData("myTestData","password"));
     }
 
 }

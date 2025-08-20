@@ -2,6 +2,7 @@ package Tests;
 
 import Pages.P01_LoginPage;
 import Pages.P02_HomePage;
+import Utilities.DataUtil;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -9,6 +10,7 @@ import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
+import java.io.FileNotFoundException;
 import java.time.Duration;
 
 public class BaseTest {
@@ -17,12 +19,12 @@ public class BaseTest {
     protected P02_HomePage homePage;
 
     @BeforeMethod
-    public void setupDriver() {
+    public void setupDriver() throws FileNotFoundException {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
+        driver.get(DataUtil.getJsonData("myTestData","url"));
         loginPage = new P01_LoginPage(driver);
         homePage = new P02_HomePage(driver);
     }
