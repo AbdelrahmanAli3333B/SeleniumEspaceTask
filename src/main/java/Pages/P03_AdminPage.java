@@ -16,6 +16,9 @@ public class P03_AdminPage {
     private final By usernameSearchArea = By.xpath("//div[@class='oxd-input-group oxd-input-field-bottom-space']//div//input[@class='oxd-input oxd-input--active']");
     private final By searchButton = By.xpath("//button[normalize-space()='Search']");
     private final By resultsTable = By.cssSelector(".oxd-table-body .oxd-table-row");
+    private final By firstRowUsername = By.xpath("//*[@id=\"app\"]/div[1]/div[2]/div[2]/div/div[2]/div[3]/div/div[2]/div/div/div[3]/div");
+    private final By firstRowEmployeeName = By.xpath("//*[@id=\"app\"]/div[1]/div[2]/div[2]/div/div[2]/div[3]/div/div[2]/div/div/div[4]/div");
+    private final By firstRowStatus = By.xpath("//*[@id=\"app\"]/div[1]/div[2]/div[2]/div/div[2]/div[3]/div/div[2]/div/div/div[5]/div");
 
     public P03_AdminPage(WebDriver driver) {
         this.driver = driver;
@@ -53,4 +56,17 @@ public class P03_AdminPage {
         }
         return count;
     }
+
+    public String getUserRoleFromTable(){
+        return driver.findElement(firstRowUsername).getText().trim();
+    }
+
+    public String getEmployeeNameFromTable(){
+        return driver.findElement(firstRowEmployeeName).getText().trim();
+    }
+
+    public String getStatusFromTable(){
+        return driver.findElement(firstRowStatus).getText().trim();
+    }
+
 }
