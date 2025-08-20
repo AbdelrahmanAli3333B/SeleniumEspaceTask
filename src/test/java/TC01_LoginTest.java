@@ -28,11 +28,12 @@ public class TC01_LoginTest {
 
     @Test(priority = 1)
     public void validLogin(){
-        loginPage = new P01_LoginPage(driver);
+
         homePage = new P02_HomePage(driver);
-        loginPage.enterUsername("Admin");
-        loginPage.enterPassword("admin123");
-        loginPage.clickLoginButton();
+        new P01_LoginPage(driver)
+                .enterUsername("Admin")
+                .enterPassword("admin123")
+                .clickLoginButton();
         Assert.assertEquals(homePage.getNavBarText(),"Dashboard");
     }
 

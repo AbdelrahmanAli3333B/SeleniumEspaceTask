@@ -1,5 +1,6 @@
 package Pages;
 
+import Utilities.Utility;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -15,15 +16,19 @@ public class P01_LoginPage {
         this.driver = driver;
     }
 
-    public void enterUsername(String usernameText){
-        driver.findElement(usernameInput).sendKeys(usernameText);
+    public P01_LoginPage enterUsername(String usernameText){
+        Utility.sendData(driver,usernameInput,usernameText);
+        return this;
+
     }
 
-    public void enterPassword(String passwordText){
-        driver.findElement(passwordInput).sendKeys(passwordText);
+    public P01_LoginPage enterPassword(String passwordText){
+        Utility.sendData(driver,passwordInput,passwordText);
+        return this;
     }
 
-    public void clickLoginButton(){
-        driver.findElement(loginButton).click();
+    public P02_HomePage clickLoginButton(){
+        Utility.clickOnElement(driver, loginButton);
+        return  new P02_HomePage(driver);
     }
 }
