@@ -1,5 +1,6 @@
 package Pages;
 
+import Utilities.Utility;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -12,8 +13,9 @@ public class P02_HomePage {
         this.driver = driver;
     }
 
-    public void clickOnAdminTab(){
-        driver.findElement(adminTab);
+    public P03_AdminPage clickOnAdminTab(){
+        Utility.clickOnElement(driver, adminTab);
+        return new P03_AdminPage(driver);
     }
 
     public String getNavBarText(){

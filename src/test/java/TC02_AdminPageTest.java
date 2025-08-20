@@ -10,25 +10,16 @@ import org.testng.annotations.Test;
 
 import java.time.Duration;
 
-public class TC02_AdminPageTest {
-    private WebDriver driver;
+public class TC02_AdminPageTest extends TC01_LoginTest {
     P02_HomePage homePage;
     P03_AdminPage adminPage;
 
-    @BeforeMethod
-
-    public void setupDriver(){
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-    }
-
     @Test
-    public void adminPage(){
-        adminPage = new P03_AdminPage(driver);
+    public void getAdminPage(){
+        validLogin();
+        homePage = new P02_HomePage(driver);
         homePage.clickOnAdminTab();
+        adminPage = new P03_AdminPage(driver);
         Assert.assertEquals(adminPage.getNavBarText(),"User Management");
     }
 }

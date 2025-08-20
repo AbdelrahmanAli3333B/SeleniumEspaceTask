@@ -12,7 +12,7 @@ import Pages.P03_AdminPage;
 import java.time.Duration;
 
 public class TC01_LoginTest {
-    private WebDriver driver;
+    protected WebDriver driver;
     P01_LoginPage loginPage;
     P02_HomePage homePage;
 
@@ -28,7 +28,6 @@ public class TC01_LoginTest {
 
     @Test(priority = 1)
     public void validLogin(){
-
         homePage = new P02_HomePage(driver);
         new P01_LoginPage(driver)
                 .enterUsername("Admin")
