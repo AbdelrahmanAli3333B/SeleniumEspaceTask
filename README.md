@@ -17,4 +17,4 @@ I used two design patterns:
 How to run the test
 -------------------
 * All you need to do is run the **TestCaseRunner.xml** file, which will execute all test cases in parallel and give you the results.
-* If you want to change any data please change required data in **myTestData.json** only, you don't need to change any thing in code.
+* If you want to change any data please change required data in **myTestData.json** file only, you don't need to change any thing in code.
